@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+    <%= t.include("partials/_analytics.html") %>
+  </head>
+  <script>  var HDN = HDN || {}  </script>
+
+  <body>
+
+    <div class="outer">
+      <div class="hed">Following the money</div>
+      <div class="chatter">With the advent of Super PACs, donations in support of candidates have become ever more opaque and difficult to follow. We tried to untangle the webs of contributions to see where Wiener and Kim are getting support.</div>
+
+      <div id="node-graph">
+        <!-- <svg width="1000" height="900"></svg> -->
+      </div>
+
+      <div class="interactive-credit">
+        <div class="entry">Emma O'Neill  &bull; <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a></div>
+        <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
+      </div>
+      <div class="interactive-source">Source: This is where we got the data.</div>
+      <div class="interactive-source padded">About the data: This is what you need to know about the data and some caveats about how it may not be right though we definitely tried to make it right.</div>
+
+    </div>
+
+    <script>
+      var campaignData = <%= JSON.stringify(csv.campaignDataJoaquin) %>;
+      console.log(campaignData);
+      // var sankeyData = <%= JSON.stringify(csv.campaignDataSankey) %>;
+    </script>
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_helloSFC.html") %>
+
+  </body>
+</html>
