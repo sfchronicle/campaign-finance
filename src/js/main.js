@@ -73,11 +73,18 @@ var link = g.selectAll(".link")
     })
     .on("mouseover", function(d) {
       var split_str = d.id.split(".");
-      tooltip.html(`
-        <div><b>Donor</b>: ${d.id.substring(d.id.lastIndexOf(".") + 1)}</div>
-        <div><b>Recipent</b>: ${split_str[ split_str.length - 2 ]}</div>
-        <div><b>Amount</b>: $${formatthousands(d.data.value)}</div>
-      `);
+      if (d.data.value == 0) {
+        tooltip.html(`
+          <div>${d.id.substring(d.id.lastIndexOf(".") + 1)}</div>
+          <div>${split_str[ split_str.length - 2 ]}</div>
+        `);
+      } else {
+        tooltip.html(`
+          <div><b>Donor</b>: ${d.id.substring(d.id.lastIndexOf(".") + 1)}</div>
+          <div><b>Recipent</b>: ${split_str[ split_str.length - 2 ]}</div>
+          <div><b>Amount</b>: $${formatthousands(d.data.value)}</div>
+        `);
+      }
       tooltip.style("visibility", "visible");
   })
   .on("mousemove", function() {
@@ -105,7 +112,7 @@ var node = g.selectAll(".node")
       })
     .attr("transform", function(d) {
       return "translate(" + d.y + "," + d.x + ")";
-    })
+    });
 
 // show tooltip
 var tooltip = d3.select("#node-graph")
@@ -122,7 +129,13 @@ node.append("circle")
 
 node.append("text")
     // how far the text is spaced from the nodes vertically
-    .attr("dy", 20)
+    .attr("dy", function(d) {
+      if (d.id.substring(d.id.lastIndexOf(".") + 1) == " California Charter School Association") {
+        return -5;
+      } else {
+        return 20;
+      }
+    })
     .attr("x", function(d) {
       // how far the text is spaced from the nodes horizonally
       return d.children ? 50 : -50;
@@ -132,4 +145,41 @@ node.append("text")
     })
     .text(function(d) {
       return d.id.substring(d.id.lastIndexOf(".") + 1);
+    })
+    // .call(wrap, 300); // wrap the text in <= 30 pixels
+
+
+function wrap(text, width) {
+    console.log(text);
+    text.each(function () {
+      var text = d3.select(this),
+          words = text.text().split(/\s+/).reverse(),
+          word,
+          line = [],
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          x = text.attr("x"),
+          y = text.attr("y"),
+          dy = 0, //parseFloat(text.attr("dy")),
+          tspan = text.text(null)
+              .append("tspan")
+              .attr("x", x)
+              .attr("y", y)
+              .attr("dy", dy + "em");
+        console.log(words);
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                            .text(word);
+            }
+        }
     });
+}
