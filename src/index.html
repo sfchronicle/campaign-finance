@@ -7,34 +7,40 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <%= t.include("partials/_head.html") %>
-    <%= t.include("partials/_analytics.html") %>
   </head>
-  <script>  var HDN = HDN || {}  </script>
 
-  <body>
+  <body is="responsive-body">
 
     <div class="outer">
-      <div class="hed">Following the money</div>
-      <div class="chatter">With the advent of Super PACs, donations in support of candidates have become ever more opaque and difficult to follow. We tried to untangle the webs of contributions to see where Wiener and Kim are getting support.</div>
+      <div class="hed">Mapping the money behind District 11 candidate Scott Wiener</div>
+      <div class="chatter">Outside committees backing District 11 State Senate candidate Scott Wiener have spent more than $1.5 million in the race so far – an amount more than five times larger than what rival candidate Jane Kim has drawn. Most of that money has come from the Equality California Political Action Committee, a gay rights PAC. As of mid-October, it had spent more than any other committee in the race.
 
-      <div id="node-graph">
-        <!-- <svg width="1000" height="900"></svg> -->
+      <div class="sub-deck">The main source of funding for Equality California appears to be an unlikely ally: the California Charter Schools Association, a PAC that has donated more than $400,000. A separate branch of the association has spent close to $380,000 on ads and polling supporting Wiener, and has financially backed an anti-Kim committee that’s mostly funded by venture capitalist Ron Conway.</div>
+
+      <div class="sub-deck">Hover over or click on the links in the chart below to follow the money.</div></div>
+
+      <div class="legend-container">
+        <div class="element"><div class="dorisfisher-swath"><div class="legend-text">Doris Fisher</div></div></div>
+        <div class="element"><div class="ronconway-swath"><div class="legend-text">Ron Conway</div></div></div>
+        <div class="element"><div class="charter-swath"><div class="legend-text">California Charter School Assoc.</div></div></div>
+        <div class="element"><div class="other-swath"><div class="legend-text">Other</div></div></div>
       </div>
+
+      <div id="node-graph"></div>
 
       <div class="interactive-credit">
         <div class="entry">Emma O'Neill  &bull; <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a></div>
         <div class="entry">Joaquin Palomino  &bull; <a href="mailto:jpalomino@sfchronicle.com">jpalomino@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/JoaquinPalomino" target="_blank">@JoaquinPalomino</a></div>
       </div>
-      <div class="interactive-source">Source: This is where we got the data.</div>
-      <div class="interactive-source padded">About the data: This is what you need to know about the data and some caveats about how it may not be right though we definitely tried to make it right.</div>
+      <div class="interactive-source">Source: <a href="http://cal-access.ss.ca.gov/Campaign/" target="_blank">California Secretary of State</div>
+      <div class="interactive-source padded">About the data: Data is from Oct. 21, 2016. The California Charter School Association also includes spending by its sponsored committee, the Parent Teacher Alliance.</div>
 
     </div>
 
     <script>
       var campaignData = <%= JSON.stringify(csv.campaignDataJoaquin) %>;
-      console.log(campaignData);
-      // var sankeyData = <%= JSON.stringify(csv.campaignDataSankey) %>;
     </script>
+    <script src="http://projects.sfchronicle.com/shared/js/responsive-child.js"></script>
 
     <script src="app.js" async></script>
     <%= t.include("partials/_helloSFC.html") %>

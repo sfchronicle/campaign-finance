@@ -129,18 +129,18 @@ li {
   @media @tablet {
     padding: 10px;
   }
-  @media @tablet {
-    padding: 5px;
+  @media @mobile {
+    margin-bottom: 0;
   }
 }
 .outer {
   max-width: 900px;
-  margin: 30px auto;
+  margin: 50px auto;
   @media @tablet {
-    margin: 20px;
+    margin: 50px auto;
   }
   @media @mobile {
-    margin: 10px;
+    margin: 30px auto;
   }
 }
 .source, .credit {
@@ -301,7 +301,6 @@ footer {
   padding: 5px 10px 7px;
   font-size: 18px;
   font-family: @body;
-  cursor: pointer;
 
   &.active {
     background: @active-link;
@@ -562,14 +561,11 @@ header {
   font-family: @block-graphics;
   padding-top: 10px;
   padding-bottom: 0;
-  @media @tablet {
-    padding: 10px 20px;
-  }
-  @media @mobile {
-    padding: 20px 0;
-  }
   &.padded {
     padding-bottom: 40px;
+  }
+  @media @mobile {
+    padding: 5px 10px;
   }
 }
 
@@ -587,7 +583,7 @@ header {
   font-size: 14px;
   fill: #555;
   @media @mobile {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -596,6 +592,7 @@ header {
 }
 
 .link {
+  cursor: unset;
   fill: none;
   // stroke: #555;
   stroke-opacity: 0.4;
@@ -603,4 +600,61 @@ header {
     stroke-opacity: 0.8;
   }
   // stroke-width: 1.5px;
+}
+
+.tooltip {
+  .bold {
+    font-family: @med-graphics;
+  }
+  @media @mobile {
+    font-size: 12px;
+  }
+}
+
+.legend-container {
+  font-size: 12px;
+  font-family: @block-graphics;
+  border: 1px solid @black;
+  border-radius: 6px;
+  width: 440px;
+  @media @mobile {
+    width: 90%;
+  }
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 4px;
+  .display-flex;
+  .flex-wrap(wrap);
+  @media @mobile {
+    margin: 15px auto;
+  }
+  .element {
+    .flex(0 0 50%);
+    @media @mobile {
+      .flex(0 0 90%);
+    }
+  }
+  .dorisfisher-swath, .ronconway-swath, .other-swath, .charter-swath  {
+    height: 14px;
+    width: 14px;
+    margin: 4px;
+    border-radius: 2px;
+  }
+  .dorisfisher-swath {background: #A2B685}
+  .ronconway-swath {background: #869FBF}
+  .other-swath {background: #D13D59}
+  .charter-swath {background: #FFE64C}
+  .legend-text {
+    width: 220px;
+    padding-left: 20px;
+    vertical-align: text-top;
+  }
+}
+
+.sub-deck {
+  padding-top: 10px;
+}
+
+svg {
+  margin: auto;
 }
