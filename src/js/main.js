@@ -15,23 +15,25 @@ var formatthousands = d3.format(",d");
 
 var horiz_spacing = {
   left: 100,
-  right: -50
+  right: -45
 }
 
-var left_alignment = 70;
+var left_alignment = 40;
 var margin = {
   x: 200,
   y: 50 }
-if (screen.width > 768) {
-  var W = 900;
+if (screen.width > 1024) {
+  var W = 850;
   var H = 900;
-} else if (screen.width <= 768 && screen.width > 667) {
+  var left_alignment = 40;
+} else if (screen.width <= 1024 && screen.width > 667) {
   var W = 750;
   var H = 800;
   var horiz_spacing = {
     left: 100,
     right: 0
   }
+  var left_alignment = 35;
 } else if (screen.width <= 667 && screen.width > 480) {
   var W = 525;
   var H = 600;
@@ -41,15 +43,16 @@ if (screen.width > 768) {
   }
   var left_alignment = 40;
 } else if (screen.width <= 480) {
-  var W = 320;
+  var W = 300;
   var H = 600;
   var margin = {
-    x: 120,
+    x: 110,
     y: 0 };
   var horiz_spacing = {
     left: 0,
-    right: -10
+    right: -35
   };
+  console.log(horiz_spacing);
   var left_alignment = 40;
 }
 
@@ -218,7 +221,11 @@ if (screen.width <= 480) {
   node.append("text")
       // how far the text is spaced from the nodes vertically
       .attr("dy", function(d) {
-        return 20;
+        if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Equality California PAC"){
+          return 5;
+        } else {
+          return 18;
+        }
       })
       .attr("x", function(d) {
         var res = d.children ? horiz_spacing.left : horiz_spacing.right;
@@ -226,13 +233,13 @@ if (screen.width <= 480) {
           if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Independent Expenditure Committees"){
             return res+100;
           } else if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Equality California PAC") {
-            return res;
+            return res-10;
           } else {
-            return res+30;
+            return res+25;
           }
         } else {
           if ((d.id.substring(d.id.lastIndexOf(".") + 1) == "Doris Fisher") || (d.id.substring(d.id.lastIndexOf(".") + 1) == "Ron Conway")) {
-            return res+10;
+            return res+25;
           } else {
             return res-30;
           }

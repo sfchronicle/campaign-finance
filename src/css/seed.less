@@ -136,11 +136,17 @@ li {
 .outer {
   max-width: 900px;
   margin: 50px auto;
+  margin-bottom: 0;
   @media @tablet {
     margin: 50px auto;
+    margin-bottom: 0;
+  }
+  @media @phone-horiz {
+    margin-bottom: 0;
   }
   @media @mobile {
     margin: 30px auto;
+    margin-bottom: 20px;
   }
 }
 .source, .credit {
