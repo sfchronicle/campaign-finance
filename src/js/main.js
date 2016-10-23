@@ -39,7 +39,7 @@ if (screen.width > 1024) {
   var H = 600;
   var horiz_spacing = {
     left: 50,
-    right: 0
+    right: -12
   }
   var left_alignment = 40;
 } else if (screen.width <= 480) {
