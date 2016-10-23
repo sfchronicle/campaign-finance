@@ -595,6 +595,9 @@ header {
 
 .node--internal text {
   text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+  @media @phone-horiz {
+    text-shadow: none;
+  }
 }
 
 .link {

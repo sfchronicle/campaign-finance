@@ -223,6 +223,8 @@ if (screen.width <= 480) {
       .attr("dy", function(d) {
         if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Equality California PAC"){
           return 5;
+        } else if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Scott Wiener"){
+          return 30;
         } else {
           return 18;
         }
@@ -260,7 +262,11 @@ if (screen.width <= 480) {
   node.append("text")
       // how far the text is spaced from the nodes vertically
       .attr("dy", function(d) {
-        return 20;
+        if (d.id.substring(d.id.lastIndexOf(".") + 1) == "Scott Wiener"){
+          return 45;
+        } else {
+          return 25;
+        }
       })
       .attr("x", function(d) {
         var res = d.children ? horiz_spacing.left : horiz_spacing.right;
