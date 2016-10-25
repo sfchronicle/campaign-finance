@@ -147,7 +147,7 @@ var link = g.selectAll(".link")
     } else {
       return tooltip
         .style("top", (d3.event.pageY+20)+"px")
-        .style("left",(d3.event.pageX-80)+"px");
+        .style("left",((2*d3.event.pageX/3)+50)+"px");
     }
   })
   .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
@@ -199,7 +199,7 @@ var node = g.selectAll(".node")
     } else {
       return tooltip
         .style("top", (d3.event.pageY+20)+"px")
-        .style("left",(d3.event.pageX-80)+"px");
+        .style("left",((2*d3.event.pageX/3)+50)+"px");
     }
   })
   .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
